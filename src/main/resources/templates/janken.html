@@ -7,7 +7,17 @@
 </head>
 
 <body>
-  ここはjanken.htmlです．
+  <h1>Janken GAME!</h1>
+  <p>
+  <div th:if="${user_name}">
+    hi [[${user_name}]]
+  </div>
+  <div>
+    <a href="/null">グー</a><br>
+    <a href="/null">チョキ</a><br>
+    <a href="/null">パー</a><br>
+  </div>
+  </p>
 </body>
 
 </html>
