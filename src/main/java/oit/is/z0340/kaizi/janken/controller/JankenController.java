@@ -20,4 +20,11 @@ public class JankenController {
   public String janken() {
     return "janken.html";
   }
+
+  @PostMapping("/entry")
+  public String entry(@RequestParam String user_name, ModelMap model) {
+    model.addAttribute("user_name", user_name);
+    return "janken.html";
+  }
+
 }
