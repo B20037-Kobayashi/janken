@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
   <script th:inline="javascript" th:if="${judge}">
     window.onload = function () {
       var judge = [[${ judge }]]
@@ -17,10 +18,12 @@
       document.getElementById("result_msg").innerHTML = result_log;
     }
   </script>
+
   <h1>Janken GAME!</h1>
   <p th:if="${userName}">
     hi [[${userName}]]
   </p>
+
   <p>
   <div>
     <a href="/janken/1">グー</a><br>
@@ -28,12 +31,13 @@
     <a href="/janken/3">パー</a><br>
   </div>
   </p>
+
   <div th:if="${judge}">
     <span id="result_msg">
       結果=[[${result_log}]]
     </span>
-
   </div>
+
 </body>
 
 </html>
