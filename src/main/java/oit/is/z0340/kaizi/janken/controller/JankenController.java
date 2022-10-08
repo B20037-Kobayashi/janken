@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import oit.is.z0340.kaizi.janken.model.*;
+
 /*
 @ControllerをつけているからHTTPリクエストがあったら，このクラスがよばれる
 */
@@ -16,15 +18,17 @@ public class JankenController {
   /**
    * jankenというGETリクエストがあったら janken()を呼び出し，janken.htmlを返す
    */
+
   @GetMapping("/janken")
-  public String janken() {
+  public String janken(@RequestParam String userName, ModelMap model) {
+    model.addAttribute("userName", userName);
     return "janken.html";
   }
 
-  @PostMapping("/entry")
-  public String entry(@RequestParam String user_name, ModelMap model) {
-    model.addAttribute("user_name", user_name);
+  @GetMapping("/janken/{hand}")
+  public String janken(@PathVariable Integer hand, ModelMap model) {
+    Janken judge = new Janken(hand);
+    model.addAttribute("judge", judge);
     return "janken.html";
   }
-
 }
