@@ -18,19 +18,19 @@ public class JankenAuthConfiguration {
     UserBuilder users = User.builder();
     UserDetails user1 = users
         .username("user1")
-        .password("$2y$10$1azfPXQvYqser1IsI6m2sODpUy/POwvvBZNTbFZ44OvJtB3ct0VX6")
+        .password("$2y$10$FEwKdp7.S4WNHIL7i4h0z.smN.uQ50UNe5I7.BlSOJAkVoeX3/O6a")
         .roles("USER")
         .build();
 
     UserDetails user2 = users
         .username("user2")
-        .password("$2y$10$1azfPXQvYqser1IsI6m2sODpUy/POwvvBZNTbFZ44OvJtB3ct0VX6")
+        .password("$2y$10$FEwKdp7.S4WNHIL7i4h0z.smN.uQ50UNe5I7.BlSOJAkVoeX3/O6a")
         .roles("USER")
         .build();
 
     UserDetails admin = users
         .username("admin")
-        .password("2$2y$10$1azfPXQvYqser1IsI6m2sODpUy/POwvvBZNTbFZ44OvJtB3ct0VX6")
+        .password("$2y$10$FEwKdp7.S4WNHIL7i4h0z.smN.uQ50UNe5I7.BlSOJAkVoeX3/O6a")
         .roles("ADMIN")
         .build();
 
