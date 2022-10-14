@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
 <head>
   <meta charset="utf-8">
@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
 
   <script th:inline="javascript" th:if="${judge}">
     window.onload = function () {
@@ -20,15 +21,26 @@
   </script>
 
   <h1>Janken GAME!</h1>
-  <p th:if="${userName}">
-    hi [[${userName}]]
-  </p>
+
 
   <p>
+  <h2>Users Battle!</h2>
+  <h3>エントリー</h3>
+  <div th:if="${room}">
+    <ul>
+      <li th:each="user :${room.users}">[[${user}]]</li>
+    </ul>
+  </div>
+  </p>
+
+
+
+  <p>
+  <h2>Bot Battle!</h2>
   <div>
-    <a href="/janken/1">グー</a><br>
-    <a href="/janken/2">チョキ</a><br>
-    <a href="/janken/3">パー</a><br>
+    <a href="/janken/botbattle/1">グー</a><br>
+    <a href="/janken/botbattle/2">チョキ</a><br>
+    <a href="/janken/botbattle/3">パー</a><br>
   </div>
   </p>
 
@@ -37,7 +49,9 @@
       結果=[[${result_log}]]
     </span>
   </div>
-
+  <p>
+  <div><a href="/logout">ログアウト</a></div>
+  </p>
 </body>
 
 </html>

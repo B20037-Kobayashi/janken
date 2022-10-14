@@ -1,112 +1,129 @@
 package oit.is.z0340.kaizi.janken.model;
 
-import javax.swing.text.AbstractDocument.BranchElement;
-
 public class Janken {
-  Integer hand;
-  String result;
+  Integer UHNum;
+  Integer UHNum1;
+  Integer UHNum2;
+  Integer BHNum;
+  Integer resultNum = -1;
   String userHand;
   String oppHand;
+  String result;
 
-  public Janken(Integer hand) {
-    this.hand = hand;
-    Integer cpuHand = (int) (Math.random() * 10) % 3 + 1;
-    int result_num = -1;
+  public Janken(Integer UHNum) {
+    this.UHNum = UHNum;
+    this.BHNum = (int) (Math.random() * 10) % 3 + 1;
+  }
 
-    switch (cpuHand) {
+  public Janken(Integer UHNum1, Integer UHNum2) {
+    this.UHNum1 = UHNum1;
+    this.UHNum2 = UHNum2;
+  }
+
+  public void UsersBattle() {
+    setUserHand(this.UHNum1);
+    setUserHand(this.UHNum2);
+    setBattleResult(this.UHNum1, this.UHNum2);
+  }
+
+  public void BotBattle() {
+    setUserHand(this.UHNum);
+    setOppHand(this.BHNum);
+    setBattleResult(this.UHNum, this.BHNum);
+  }
+
+  public void setUserHand(Integer UHNum) {
+    switch (UHNum) {
       case 1:
-        oppHand = "グー";
+        this.userHand = "グー";
         break;
       case 2:
-        oppHand = "チョキ";
+        this.userHand = "チョキ";
         break;
       case 3:
-        oppHand = "パー";
+        this.userHand = "パー";
         break;
     }
-    switch (hand) {
+  }
+
+  public void setOppHand(Integer OHNum) {
+    switch (OHNum) {
       case 1:
-        userHand = "グー";
+        this.oppHand = "グー";
         break;
       case 2:
-        userHand = "チョキ";
+        this.oppHand = "チョキ";
         break;
       case 3:
-        userHand = "パー";
+        this.oppHand = "パー";
         break;
     }
+  }
 
-    switch (hand) {
+  public void setBattleResult(Integer UHNum, Integer oppNum) {
+    switch (UHNum) {
       case 1:
-        switch (cpuHand) {
+        switch (oppNum) {
           case 1:
-            result_num = 0;// あいこ
+            this.resultNum = 0;// あいこ
             break;
           case 2:
-            result_num = 1;// 勝ち
+            this.resultNum = 1;// 勝ち
             break;
           case 3:
-            result_num = 2;// 負け
+            this.resultNum = 2;// 負け
             break;
         }
         break;
       case 2:
-        switch (cpuHand) {
+        switch (oppNum) {
           case 1:
-            result_num = 2;
+            this.resultNum = 2;
             break;
           case 2:
-            result_num = 0;
+            this.resultNum = 0;
             break;
           case 3:
-            result_num = 1;
+            this.resultNum = 1;
             break;
         }
         break;
       case 3:
-        switch (cpuHand) {
+        switch (oppNum) {
           case 1:
-            result_num = 1;
+            this.resultNum = 1;
             break;
           case 2:
-            result_num = 2;
+            this.resultNum = 2;
             break;
           case 3:
-            result_num = 0;
+            this.resultNum = 0;
             break;
         }
         break;
     }
-    switch (result_num) {
+    switch (this.resultNum) {
       case 0:
-        result = "Drow";
+        this.result = "Drow";
         break;
       case 1:
-        result = "You Win!";
+        this.result = "You Win!";
         break;
       case 2:
-        result = "You Lose...";
+        this.result = "You Lose...";
         break;
     }
   }
 
-  public Integer getHand() {
-    return hand;
+  public Integer getUHNum() {
+    return UHNum;
   }
 
-  public void setHand(Integer hand) {
-    this.hand = hand;
+  public void setUHNum(Integer UHNum) {
+    this.UHNum = UHNum;
   }
 
-  public String getResult() {
-    return result;
-  }
-
-  public void setResult(String result) {
-    this.result = result;
-  }
-
-  public String getuserHand() {
+  public String getUserHand() {
     return userHand;
   }
 
@@ -120,6 +137,14 @@ public class Janken {
 
   public void setOppHand(String oppHand) {
     this.oppHand = oppHand;
+  }
+
+  public String getResult() {
+    return result;
+  }
+
+  public void setResult(String result) {
+    this.result = result;
   }
 
 }
