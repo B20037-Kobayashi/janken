@@ -8,7 +8,6 @@
 
 <body>
 
-
   <script th:inline="javascript" th:if="${judge}">
     window.onload = function () {
       var judge = [[${ judge }]]
@@ -21,22 +20,44 @@
   </script>
 
   <h1>Janken GAME!</h1>
+  <div th:if="${loginUser}">
+    hi [[${loginUser}]]
+  </div>
+
+  <h2>lec04</h2>
+  <h3>エントリー</h3>
+  <p th:if="${users1}">
+  <div th:each="user,stat:${users1}">
+    <tr>
+      <td>・[[${user.userName}]] </td>
+    </tr>
+  </div>
+  </p>
+
+  <h3>試合結果</h3>
+  <p th:if="${matchResults}">
+  <div th:each="result,stat:${matchResults}">
+    <tr>id:[[${result.id}]] user1:[[${result.user1}]] user2:[[${result.user2}]] user1Hand:[[${user1Hand}]]
+      user2Hand:[[${result.user2Hand}]] </tr>
+  </div>
+  </p>
 
 
-  <p>
-  <h2>Users Battle!</h2>
+
+  <!-- <p>
+  <h2>lec03_Users Battle!</h2>
   <h3>エントリー</h3>
   <div th:if="${room}">
     <ul>
       <li th:each="user :${room.users}">[[${user}]]</li>
     </ul>
   </div>
-  </p>
+  </p> -->
 
 
 
   <p>
-  <h2>Bot Battle!</h2>
+  <h2>lec02_Bot Battle!</h2>
   <div>
     <a href="/janken/botbattle/1">グー</a><br>
     <a href="/janken/botbattle/2">チョキ</a><br>
