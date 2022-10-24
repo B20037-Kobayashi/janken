@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.z0340.kaizi.janken.model.User;
 import oit.is.z0340.kaizi.janken.model.UserMapper;
@@ -21,7 +22,6 @@ import oit.is.z0340.kaizi.janken.model.Janken;
 import oit.is.z0340.kaizi.janken.model.Room;
 
 @Controller
-@RequestMapping("/janken")
 public class JankenController {
 
   @Autowired
@@ -31,7 +31,7 @@ public class JankenController {
   @Autowired
   public Room room;
 
-  @GetMapping("entry")
+  @GetMapping("/janken")
   public String janken(Principal prin, ModelMap model) {
     // roomの作成
     String loginUser = prin.getName();
@@ -47,7 +47,17 @@ public class JankenController {
     return "janken.html";
   }
 
-  @GetMapping("botbattle/{UHNum}")
+  @GetMapping("/match")
+  public String match(Principal prin, @RequestParam Integer id, ModelMap model) {
+    String loginUser = prin.getName();
+    model.addAttribute("loginUser", loginUser);
+
+    User selectedUser = userMapper.selectById(id);
+    model.addAttribute("selectedUser", selectedUser);
+    return "match.html";
+  }
+
+  @GetMapping("/janken/botbattle/{UHNum}")
   public String janken(@PathVariable Integer UHNum, ModelMap model) {
     Janken judge = new Janken(UHNum);
     judge.BotBattle();

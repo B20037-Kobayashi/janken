@@ -26,13 +26,9 @@
 
   <h2>lec04</h2>
   <h3>エントリー</h3>
-  <p th:if="${users1}">
-  <div th:each="user,stat:${users1}">
-    <tr>
-      <td>・[[${user.userName}]] </td>
-    </tr>
-  </div>
-  </p>
+  <li th:each="user : ${users1}">
+    <a th:href="@{/match(id=${user.id})}"> [[${user.userName}]]</a>
+  </li>
 
   <h3>試合結果</h3>
   <p th:if="${matchResults}">
