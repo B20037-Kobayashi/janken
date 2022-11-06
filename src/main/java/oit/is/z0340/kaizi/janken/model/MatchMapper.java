@@ -11,4 +11,7 @@ import org.apache.ibatis.annotations.Select;
 public interface MatchMapper {
   @Select("SELECT id,user1,user2,user1Hand,user2Hand from matches;")
   ArrayList<Match> selectAllMatch();
+
+  @Insert("INSERT INTO matches (user1, user2, user1Hand, user2Hand) VALUES (#{user1},#{user2},#{user1Hand},#{user2Hand});")
+  void insertMatchResult(Match matchResult);
 }

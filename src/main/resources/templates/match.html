@@ -4,6 +4,17 @@
 <head>
   <meta charset="utf-8">
   <title>Janken match.html</title>
+  <script th:inline="javascript" th:if="${judge}">
+    window.onload = function () {
+      var judge = [[${ judge }]]
+      var result_log = "";
+      result_log = result_log + "あなたの手 " + judge.userHand + "<br>";
+      result_log = result_log + "相手の手 " + judge.oppHand + "<br>";
+      result_log = result_log + judge.result + "<br>";
+      document.getElementById("result_msg").innerHTML = result_log;
+    }
+  </script>
+
 </head>
 
 <body>
@@ -11,8 +22,20 @@
   <a href="/logout">ログアウト</a>
 
   <p th:if="${selectedUser}">
-    [[${selectedUser.userName}]] vs [[${loginUser}]]
+    [[${selectedUser.userName}]] vs [[${loginUser}]] [[${selectedUser.id}]]
+  <div>
+    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=1)}">グー</a><br>
+    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=2)}">チョキ</a><br>
+    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=3)}">パー</a><br>
+  </div>
+
+  <div th:if="${judge}">
+    <span id="result_msg">
+      結果=[[${result_log}]]
+    </span>
+  </div>
   </p>
+
   <a href="/janken">もどる</a>
 
 </body>
