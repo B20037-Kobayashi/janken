@@ -8,17 +8,6 @@
 
 <body>
 
-  <script th:inline="javascript" th:if="${judge}">
-    window.onload = function () {
-      var judge = [[${ judge }]]
-      var result_log = "";
-      result_log = result_log + "あなたの手 " + judge.userHand + "<br>";
-      result_log = result_log + "相手の手 " + judge.oppHand + "<br>";
-      result_log = result_log + judge.result + "<br>";
-      document.getElementById("result_msg").innerHTML = result_log;
-    }
-  </script>
-
   <h1>Janken GAME!</h1>
   <div th:if="${loginUser}">
     hi [[${loginUser}]]
@@ -38,34 +27,6 @@
   </div>
   </p>
 
-
-
-  <!-- <p>
-  <h2>lec03_Users Battle!</h2>
-  <h3>エントリー</h3>
-  <div th:if="${room}">
-    <ul>
-      <li th:each="user :${room.users}">[[${user}]]</li>
-    </ul>
-  </div>
-  </p> -->
-
-
-
-  <p>
-  <h2>lec02_Bot Battle!</h2>
-  <div>
-    <a href="/janken/botbattle/1">グー</a><br>
-    <a href="/janken/botbattle/2">チョキ</a><br>
-    <a href="/janken/botbattle/3">パー</a><br>
-  </div>
-  </p>
-
-  <div th:if="${judge}">
-    <span id="result_msg">
-      結果=[[${result_log}]]
-    </span>
-  </div>
   <p>
   <div><a href="/logout">ログアウト</a></div>
   </p>

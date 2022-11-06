@@ -36,6 +36,7 @@ public class JankenController {
     // roomの作成
     String loginUser = prin.getName();
     model.addAttribute("loginUser", loginUser);
+    //
     this.room.addUser(loginUser);
     model.addAttribute("room", this.room);
     // user一覧の作成
@@ -58,10 +59,37 @@ public class JankenController {
   }
 
   @GetMapping("/janken/botbattle/{UHNum}")
-  public String janken(@PathVariable Integer UHNum, ModelMap model) {
+  public String janken(Principal prin, @PathVariable Integer UHNum, ModelMap model) {
+    String loginUser = prin.getName();
+    model.addAttribute("loginUser", loginUser);
+
     Janken judge = new Janken(UHNum);
     judge.BotBattle();
     model.addAttribute("judge", judge);
-    return "janken.html";
+    return "match.html";
+  }
+
+  @GetMapping("/janken/fight")
+  public String janken(Principal prin, @RequestParam Integer id, @RequestParam Integer hand, ModelMap model) {
+    String loginUser = prin.getName();
+    model.addAttribute("loginUser", loginUser);
+
+    User selectedUser = userMapper.selectById(id);
+    model.addAttribute("selectedUser", selectedUser);
+
+    Janken judge = new Janken(hand);
+    judge.BotBattle();
+    model.addAttribute("judge", judge);
+
+    Match matchResult = new Match();
+    User player = userMapper.getIdByName(loginUser);
+
+    matchResult.setUser1(2);
+    matchResult.setUser2(id);
+    matchResult.setUser1Hand(judge.getOppHand());
+    matchResult.setUser2Hand(judge.getUserHand());
+    matchMapper.insertMatchResult(matchResult);
+
+    return "match.html";
   }
 }
