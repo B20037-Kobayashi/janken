@@ -26,6 +26,11 @@
       user2Hand:[[${result.user2Hand}]] </tr>
   </div>
   </p>
+  <h3>アクティブな試合</h3>
+  <p th:if="${activeMatches}">
+  <div th:each="active,stat:${activeMatches}">
+    <tr>id:[[${active.id}]] user1:[[${active.user1}]] user2:[[${active.user2}]] isActive:[[${active.isActive}]] </tr>
+  </div>
 
   <p>
   <div><a href="/logout">ログアウト</a></div>

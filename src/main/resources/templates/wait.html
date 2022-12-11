@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <title>Janken match.html</title>
+  <script>
+    window.load = function () {
+      var sse = new EventSource('/janken/informResult');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage")
+        console.log(event.data);
+        // var matchResult = JSON.parse(evevt.data);
+        var resultText = "<h2>結果<2>";
+        // console.log(matchResult);
+        var tbody = document.getElementById("informResult");
+        tbody.innerHTML = resultText;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1>相手を待っています</h1>
+  <div th:if="${loginUser}">
+    hi [[${loginUser}]]
+  </div>
+</body>
+
+<tbody id="resultText">
+
+</tbody>
+
+</html>

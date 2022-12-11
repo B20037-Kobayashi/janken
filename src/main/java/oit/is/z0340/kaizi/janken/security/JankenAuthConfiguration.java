@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class JankenAuthConfiguration {
   @Bean
   public InMemoryUserDetailsManager userDetailsService() {
+    // $ sshrun htpasswd -nbBC 10 いがき isdev
     UserBuilder users = User.builder();
     UserDetails user1 = users
         .username("user1")
@@ -34,13 +35,19 @@ public class JankenAuthConfiguration {
         .roles("USER")
         .build();
 
+    UserDetails user4 = users
+        .username("いがき")
+        .password("$2y$10$nTpHlia20Mgm14CxQLiXLuIomQtoVsxxiwMPsgc5AGYzpxRR5sqOy")
+        .roles("USER")
+        .build();
+
     UserDetails admin = users
         .username("admin")
         .password("$2y$10$FEwKdp7.S4WNHIL7i4h0z.smN.uQ50UNe5I7.BlSOJAkVoeX3/O6a")
         .roles("ADMIN")
         .build();
 
-    return new InMemoryUserDetailsManager(user1, user2, user3, admin);
+    return new InMemoryUserDetailsManager(user1, user2, user3, user4, admin);
   }
 
   @Bean

@@ -24,9 +24,9 @@
   <p th:if="${selectedUser}">
     [[${selectedUser.userName}]] vs [[${loginUser}]] [[${selectedUser.id}]]
   <div>
-    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=1)}">グー</a><br>
-    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=2)}">チョキ</a><br>
-    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=3)}">パー</a><br>
+    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=Gu)}">グー</a><br>
+    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=Choki)}">チョキ</a><br>
+    <a th:href="@{/janken/fight(id=${selectedUser.id},hand=Pa)}">パー</a><br>
   </div>
 
   <div th:if="${judge}">
